@@ -13,7 +13,7 @@ public class Server {
     public void run() {
         try {
             Bank stub = (Bank) UnicastRemoteObject.exportObject(bank,0);
-            Registry registry = LocateRegistry.getRegistry();
+            Registry registry = LocateRegistry.getRegistry("192.168.1.148");
             registry.bind("Bank", stub);
             System.out.println("Server started.");
         }

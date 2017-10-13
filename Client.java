@@ -8,6 +8,7 @@ public class Client {
     public Client() {}
 
     public void connect() {
+        String name = null;
         try {
             Registry registry = LocateRegistry.getRegistry();
             Bank stub = (Bank) registry.lookup("Bank");
@@ -15,8 +16,8 @@ public class Client {
             Boolean valid_account = false;
             while(valid_account == false) {
                 System.out.print("Login name: ");
-                String name = input.nextLine();
-                valid_account = stub.login(name);
+                name = input.nextLine();
+                valid_account = (stub.login(name)) ? true : false;
             }
             Boolean logged_in = true;
             while(logged_in) {
@@ -25,7 +26,7 @@ public class Client {
                 String[] parts = command.split(" ");
                 if(parts[0].equals("withdraw")) {
                     if(parts.length > 1) {
-                        if(stub.withdraw(Double.parseDouble(parts[1]))) {
+                        if(stub.withdraw(name, Double.parseDouble(parts[1]))) {
                             System.out.println("Withdraw succesfull.");
                         } else {
                             System.out.println("Withdraw failed.");
@@ -36,7 +37,7 @@ public class Client {
                 }
                 else if(parts[0].equals("deposit")) {
                     if(parts.length > 1) {
-                        if(stub.deposit(Double.parseDouble(parts[1]))) {
+                        if(stub.deposit(name, Double.parseDouble(parts[1]))) {
                             System.out.println("Deposit succesfull.");
                         } else {
                             System.out.println("Deposit failed.");
@@ -46,7 +47,7 @@ public class Client {
                     }
                 }
                 else if(parts[0].equals("balance")) {
-                    System.out.println("Your balance: "+stub.balance());
+                    System.out.println("Your balance: "+stub.balance(name));
                 }
                 else if(parts[0].equals("exit")) {
                     logged_in = false;

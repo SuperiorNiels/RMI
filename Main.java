@@ -6,7 +6,9 @@ public class Main {
         if(args[0].toLowerCase().equals("server")) {
             BankImp bank = new BankImp();
             Account niels = new Account("niels", 500.0);
+            Account dieter = new Account("Dieter", 500.0);
             bank.add_account(niels);
+            bank.add_account(dieter);
             Server server = new Server(bank);
             server.run();
         }
