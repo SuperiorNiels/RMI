@@ -11,6 +11,7 @@ public class Client {
         String name = null;
         try {
             Registry registry = LocateRegistry.getRegistry("192.168.1.148");
+            System.setProperty("java.rmi.server.hostname", "192.168.1.148");
             Bank stub = (Bank) registry.lookup("Bank");
             Scanner input = new Scanner(System.in);
             Boolean valid_account = false;
