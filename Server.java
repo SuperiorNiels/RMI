@@ -5,11 +5,13 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 public class Server {
-    public Server() {}
+    BankImp bank;
+    public Server(BankImp bank) {
+        this.bank = bank;
+    }
 
     public void run() {
         try {
-            BankObject bank = new BankObject();
             Bank stub = (Bank) UnicastRemoteObject.exportObject(bank,0);
             Registry registry = LocateRegistry.getRegistry();
             registry.bind("Bank", stub);
