@@ -11,7 +11,7 @@ public class Server {
         try {
             BankObject bank = new BankObject();
             Bank stub = (Bank) UnicastRemoteObject.exportObject(bank,0);
-            Registry registry = LocateRegistry.getRegistry(5000);
+            Registry registry = LocateRegistry.getRegistry();
             registry.bind("Bank", stub);
             System.out.println("Server started.");
         }

@@ -8,7 +8,7 @@ public class Client {
 
     public void connect() {
         try {
-            Registry registry = LocateRegistry.getRegistry(5000);
+            Registry registry = LocateRegistry.getRegistry();
             Bank stub = (Bank) registry.lookup("Bank");
             System.out.println("response:"+stub.sayHello());
         }
