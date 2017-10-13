@@ -10,7 +10,7 @@ public class Client {
     public void connect() {
         String name = null;
         try {
-            Registry registry = LocateRegistry.getRegistry();
+            Registry registry = LocateRegistry.getRegistry("192.168.1.148");
             Bank stub = (Bank) registry.lookup("Bank");
             Scanner input = new Scanner(System.in);
             Boolean valid_account = false;

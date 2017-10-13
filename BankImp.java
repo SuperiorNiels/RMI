@@ -8,7 +8,7 @@ public class BankImp implements Bank {
     public BankImp() {}
 
     @Override
-    public Boolean deposit(String name, Double amount) {
+    public synchronized Boolean deposit(String name, Double amount) {
         Account a = get_account(name);
         if(logged_in.contains(a) && a!=null) {
             a.setBalance(a.getBalance()+amount);
@@ -18,7 +18,7 @@ public class BankImp implements Bank {
     }
 
     @Override
-    public Boolean withdraw(String name, Double amount) {
+    public synchronized Boolean withdraw(String name, Double amount) {
         Account a = get_account(name);
         if(logged_in.contains(a) && a!=null) {
             if(a.getBalance()-amount<0) {
