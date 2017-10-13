@@ -1,11 +1,10 @@
 package RMI;
 
 import java.util.ArrayList;
-import java.rmi.RemoteException;
 
 public class BankImp implements Bank {
     Account logged_in = null;
-    ArrayList<Account> accounts = new ArrayList<Account>();
+    ArrayList<Account> accounts = new ArrayList<>();
     public BankImp() {}
 
     @Override
