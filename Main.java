@@ -13,7 +13,7 @@ public class Main {
             server.run();
         }
         else if(args[0].toLowerCase().equals("client")) {
-            Client client = new Client();
+            Client client = new Client("127.0.0.1");
             client.connect();
         }
         else {

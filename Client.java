@@ -5,13 +5,16 @@ import java.rmi.registry.Registry;
 import java.util.Scanner;
 
 public class Client {
-    public Client() {}
+    String server_address = "127.0.0.1";
+    public Client(String server_address) {
+        this.server_address = server_address;
+    }
 
     public void connect() {
         String name = null;
         try {
-            Registry registry = LocateRegistry.getRegistry("192.168.1.148");
-            System.setProperty("java.rmi.server.hostname", "192.168.1.148");
+            Registry registry = LocateRegistry.getRegistry(server_address);
+            System.setProperty("java.rmi.server.hostname", server_address);
             Bank stub = (Bank) registry.lookup("Bank");
             Scanner input = new Scanner(System.in);
             Boolean valid_account = false;
